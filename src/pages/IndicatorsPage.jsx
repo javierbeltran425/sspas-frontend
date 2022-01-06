@@ -10,18 +10,38 @@ import "../components/cssFiles/DropdownDemo.css";
 
 export default function IndicatorsPage() {
   const [selectedIndicator, setSelectedIndicator] = useState(null);
-  const [indicators, setIndicators] = useState([])
+  const [indicators, setIndicators] = useState([]);
+  const [indicatorData, setIndicatorData] = useState();
 
   useEffect(() => {
-    axios.get(process.env.REACT_APP_API_URL + 'indicadores/select')
-    .then(res => {
-        if(res.status === 200) setIndicators(res.data)
-    })
-    .catch(err => {
+    axios
+      .get(process.env.REACT_APP_API_URL + "indicadores/select")
+      .then((res) => {
+        if (res.status === 200) setIndicators(res.data);
+      })
+      .catch((err) => {
         console.log(err);
-        alert('Ha sucedido un error')
-    })
-  }, [])
+        alert("Ha sucedido un error");
+      });
+  }, []);
+
+  useEffect(() => {
+    if (selectedIndicator !== null) {
+      axios.get(
+          process.env.REACT_APP_API_URL +
+            "indicador/detalle/" +
+            selectedIndicator.code
+        )
+        .then((res) => {
+          console.log(res);
+          if(res.status === 200) setIndicatorData(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert('Ha ocurrido un error');
+        });
+    }
+  }, [selectedIndicator]);
 
   const onCityChange = (e) => {
     setSelectedIndicator(e.value);
@@ -54,7 +74,7 @@ export default function IndicatorsPage() {
         </div>
       </div>
 
-      <DataTable />
+      <DataTable data={indicatorData !== undefined ? indicatorData : undefined} type={ indicatorData !== undefined ? indicatorData.variable.nombre : "numerico"} />
     </div>
   );
 }
