@@ -11,6 +11,8 @@ import Footer from "../components/Footer";
  */
 import LandingPage from "./LandingPage";
 import IndicatorsPage from "./IndicatorsPage";
+import MapPage from "./MapPage";
+import DinamicTablePage from "./DinamicTablePage";
 
 /**
  * Context import
@@ -28,6 +30,14 @@ export default function BasePage() {
 
       case "indicadores":
         return <IndicatorsPage />
+        break;
+      
+      case "mapa":
+        return <MapPage />
+        break;
+      
+      case "tablaDinamica":
+        return <DinamicTablePage />
         break;
 
       default:

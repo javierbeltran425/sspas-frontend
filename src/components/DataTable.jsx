@@ -5,7 +5,7 @@ import BarChart from "./BarChart";
 import PieChart from "./PieChart";
 
 export default function DataTable(props) {
-  const { type, data } = props;
+  const { data } = props;
   const [meditions, setMeditions] = useState([]);
 
   useEffect(() => {
@@ -19,29 +19,6 @@ export default function DataTable(props) {
         });
     }
   }, [data]);
-
-  const renderSwitch = (key) => {
-    switch (key) {
-      case "tasa":
-        return <PieChart meditions={meditions} />;
-        break;
-      case "porcentaje":
-        return <PieChart meditions={meditions} />;
-        break;
-
-      case "numerico":
-        return <BarChart meditions={meditions} />;
-        break;
-
-      case "numerica":
-        return <BarChart meditions={meditions} />;
-        break;
-
-      default:
-        <BarChart meditions={meditions} />;
-        break;
-    }
-  };
 
   return (
     <div className="flex flex-row w-full">
@@ -101,7 +78,9 @@ export default function DataTable(props) {
           </td>
         </tr>
       </div>
-      <div className="w-1/2 my-1">{renderSwitch(type.toLowerCase())}</div>
+      <div className="w-1/2 my-1">
+        <BarChart meditions={meditions} />
+      </div>
     </div>
   );
 }

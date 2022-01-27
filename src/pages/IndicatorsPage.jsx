@@ -67,7 +67,7 @@ export default function IndicatorsPage() {
               options={indicators}
               onChange={onCityChange}
               optionLabel="name"
-              placeholder="Select a City"
+              placeholder="Seleccione un indicador"
               style={{ width: "95%" }}
             />
           </div>
