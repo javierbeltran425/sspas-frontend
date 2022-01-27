@@ -1,34 +1,86 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-import Map from './Map'
+import BarChart from "./BarChart";
+import PieChart from "./PieChart";
 
-export default function DataTable() {
-    return (
-        <div className='flex flex-row w-full'>
-            <div className="w-1/2 mx-4">
-                <div className="flex flex-row">
-                    <div className="w-1/6">
-                        <h5 className='text-black font-bold'>Variable</h5>
-                        <ul>
-                            <li className='py-2'>Eje temático</li>
-                            <li className='py-2'>Indicador</li>
-                            <li className='py-2'>Resultado</li>
-                            <li className='py-2'>Alcance</li>
-                            <li className='py-2'>Fuente de verificación</li>
-                            <li className='py-2'>Fuente de información</li>
-                            <li className='py-2'>Fórmula</li>
-                            <li className='py-2'>Periodicidad</li>
-                        </ul>
-                    </div>
-                    <div className="w-5/6">
-                        <h5 className='text-black font-bold'>Valor</h5>
+export default function DataTable(props) {
+  const { data } = props;
+  const [meditions, setMeditions] = useState([]);
 
-                    </div>
-                </div>
-            </div>
-            <div className="w-1/2">
-                <Map />
-            </div>
-        </div>
-    )
+  useEffect(() => {
+    if (data !== undefined) {
+      axios.get(process.env.REACT_APP_API_URL + "grafica/" + data.pk)
+        .then((res) => {
+          setMeditions(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [data]);
+
+  return (
+    <div className="flex flex-row w-full">
+      <div className="w-1/2 mx-4 my-1">
+        <tr>
+          <th>Variable</th>
+          <th>Valor</th>
+        </tr>
+        <tr>
+          <td className="w-12 py-2 px-2">Eje temático</td>
+          <td className="w-full py-2 px-2">
+            {data !== undefined ? data.resultado.eje.nombre : ""}
+          </td>
+        </tr>
+        <tr>
+          <td className="w-12 py-2 px-2">Indicador</td>
+          <td className="w-full py-2 px-2">
+            {data !== undefined ? data.nombre : ""}
+          </td>
+        </tr>
+        <tr>
+          <td className="w-12 py-2 px-2">Resultado</td>
+          <td className="w-full py-2 px-2">
+            {data !== undefined ? data.resultado.resultado : ""}
+          </td>
+        </tr>
+        <tr>
+          <td className="w-12 py-2 px-2">Alcance</td>
+          <td className="w-full py-2 px-2">
+            {data !== undefined ? data.alcance : ""}
+          </td>
+        </tr>
+        <tr>
+          <td className="w-12 py-2 px-2">Fuente de verificación</td>
+          <td className="w-full py-2 px-2">
+            {data !== undefined ? data.fuente_verificacion : ""}
+          </td>
+        </tr>
+        <tr>
+          <td className="w-12 py-2 px-2">Fuente de información</td>
+          <td className="w-full py-2 px-2">
+            {data !== undefined && data.fuentes_informacion.length > 0
+              ? data.fuentes_informacion[0].nombre
+              : ""}
+          </td>
+        </tr>
+        <tr>
+          <td className="w-12 py-2 px-2">Fórmula</td>
+          <td className="w-full py-2 px-2">
+            {data !== undefined ? data.formula : ""}
+          </td>
+        </tr>
+        <tr>
+          <td className="w-12 py-2 px-2">Periodicidad</td>
+          <td className="w-full py-2 px-2">
+            {data !== undefined ? data.periodicidad : ""}
+          </td>
+        </tr>
+      </div>
+      <div className="w-1/2 my-1">
+        <BarChart meditions={meditions} />
+      </div>
+    </div>
+  );
 }
