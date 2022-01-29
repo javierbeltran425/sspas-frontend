@@ -13,6 +13,7 @@ import LandingPage from "./LandingPage";
 import IndicatorsPage from "./IndicatorsPage";
 import MapPage from "./MapPage";
 import DinamicTablePage from "./DinamicTablePage";
+import AxesPage from "./AxesPage";
 
 /**
  * Context import
@@ -26,6 +27,10 @@ export default function BasePage() {
     switch (opt) {
       case "inicio":
         return <LandingPage />;
+        break;
+
+      case "ejes":
+        return <AxesPage />
         break;
 
       case "indicadores":
