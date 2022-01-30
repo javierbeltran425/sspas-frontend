@@ -14,6 +14,7 @@ import IndicatorsPage from "./IndicatorsPage";
 import MapPage from "./MapPage";
 import DinamicTablePage from "./DinamicTablePage";
 import AxesPage from "./AxesPage";
+import DownloadPage from './DownloadPage'
 
 /**
  * Context import
@@ -43,6 +44,10 @@ export default function BasePage() {
       
       case "tablaDinamica":
         return <DinamicTablePage />
+        break;
+
+      case "descargas":
+        return <DownloadPage />
         break;
 
       default:

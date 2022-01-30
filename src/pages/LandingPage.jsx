@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+
+/**
+ * Context import
+ */
+import MenuContext from "../components/context/MenuContext"
 
 /**
  * Components imports
@@ -6,7 +11,24 @@ import React from "react";
 import PanelMenu from "../components/PanelMenu";
 import Card from "../components/Card";
 
+/**
+ * Icons imports
+ */
+import ElSalvador from "../resources/elsalvador.svg";
+import Agil from "../resources/agil.svg";
+import BarChart from "../resources/chart-bar-solid.svg";
+
 export default function LandingPage() {
+  const menuContext = useContext(MenuContext)
+
+  function axeNav(id, name) {
+    menuContext.selectedOption("ejes");
+    menuContext.axeSelection({
+      id: id,
+      nombre: name,
+    });
+  }
+
   return (
     <div>
       <h1 className="text-3xl text-black font-bold text-center mt-10">
@@ -43,9 +65,12 @@ export default function LandingPage() {
                   </li>
                   <li>Corrupción policial</li>
                 </dl>
-                <a href="#" className="text-blue-400">
+                <p
+                  className="text-blue-400 cursor-pointer"
+                  onClick={() => axeNav(1, "Persecución del delito")}
+                >
                   Ver más
-                </a>
+                </p>
               </p>
             }
           />
@@ -73,9 +98,12 @@ export default function LandingPage() {
                     socidad civil y entidades estatales
                   </li>
                 </dl>
-                <a href="#" className="text-blue-400">
+                <p 
+                  className="text-blue-400 cursor-pointer"
+                  onClick={() => axeNav(2, "Prevención de la violencia")}
+                >
                   Ver más
-                </a>
+                </p>
               </p>
             }
           />
@@ -99,9 +127,12 @@ export default function LandingPage() {
                   </li>
                   <li>Cantidad de personal para atención directa a víctimas</li>
                 </dl>
-                <a href="#" className="text-blue-400">
+                <p 
+                  className="text-blue-400 cursor-pointer"
+                  onClick={() => axeNav(3, "Atención a víctimas")}
+                  >
                   Ver más
-                </a>
+                </p>
               </p>
             }
           />
@@ -123,9 +154,12 @@ export default function LandingPage() {
                     Porcentaje de personas ex privadas de libertad reincidentes
                   </li>
                 </dl>
-                <a href="#" className="text-blue-400">
+                <p 
+                  className="text-blue-400 cursor-pointer"
+                  onClick={() => axeNav(4, "Rehabilitación")}
+                  >
                   Ver más
-                </a>
+                </p>
               </p>
             }
           />
@@ -133,18 +167,21 @@ export default function LandingPage() {
       </div>
       <div className="flex flex-row justify-center w-full p-4 mt-10">
         <Card
+          ico={Agil}
           title="Visor avanzado"
           content="Aquí podrás ver los detalles de cada indicador, incluyendo el alcance, fuentes de información, instituciones que poseen la información, método de obtención de los datos y otros."
           buttonTitle="Ver fichas"
         />
 
         <Card
+          ico={ElSalvador}
           title="Visor territorial"
           content="Aquí podrás ver algunos indicadores cuantitativos que tienen desagregación a nivel departamental. Ingresa y selecciona el que sea de tu interés para visualizarlo junto a otros indicadores."
           buttonTitle="Ver mapas"
         />
 
         <Card
+          ico={BarChart}
           title="Tabla dinámica"
           content="Aquí podrás usar nuestra tabla dinámica, así como las de Excel. Podrás crear tus propios gráficos, mapas de calor y similares."
           buttonTitle="Ver tabla"

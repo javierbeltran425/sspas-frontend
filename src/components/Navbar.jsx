@@ -65,7 +65,7 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="flex flex-row justify-between w-full h-16 bg-blue-900">
+    <div className="flex flex-row justify-between w-full h-16 bg-blue-900 rounded-b-3xl">
       <img
         src={sspasLogo}
         alt="No image"
@@ -107,7 +107,7 @@ export default function Navbar() {
           Mapa
         </li>
         <li
-          className="flex justify-center items-center px-4 hover:bg-blue-800 duration-500 h-full cursor-pointer"
+          className="flex justify-center items-center px-4 hover:bg-blue-800 duration-500 h-full cursor-pointer rounded-br-3xl"
           onClick={() => menuContext.selectedOption("descargas")}
         >
           Descargas
