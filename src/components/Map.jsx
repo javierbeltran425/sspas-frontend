@@ -8,9 +8,6 @@ const Map = (props) => {
 
   const position = [13.9437861703303, -88.93666382512089];
 
-  console.log('Impresion de coordinates');
-  console.log(coordinates);
-
   let contentMap = null
 
   
