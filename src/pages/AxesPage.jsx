@@ -1,12 +1,41 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 /**
  * Context import
  */
 import MenuContext from "../components/context/MenuContext";
 
+/**
+ * Components imports
+ */
+import { PanelMenu } from "primereact/panelmenu";
+
 export default function AxesPage() {
   const { selectedAxe } = useContext(MenuContext);
+  const [axeData, setAxeData] = useState(null);
+
+  useEffect(() => {
+    try {
+      axios
+        .get(process.env.REACT_APP_API_URL + "eje/detalle/" + selectedAxe.id)
+        .then((res) => {
+          setAxeData(res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } catch (error) {
+      throw console.error(error);
+    }
+  }, [selectedAxe]);
+
+  let resultsContent = null;
+  if (axeData !== null) {
+    resultsContent = axeData.resultados.map((e) => {
+      return Results(e.id, e.presupuesto, e.resultado, e.indicadores);
+    });
+  }
 
   return (
     <div className="w-full min-h-screen">
@@ -24,98 +53,62 @@ export default function AxesPage() {
 
       <br />
       <br />
-      <p>EJE SELECCIONADO: {selectedAxe.nombre}</p>
-      <p>ID: {selectedAxe.id}</p>
-      <br />
+      <p className="text-black text-3xl font-bold px-4">{selectedAxe.nombre}</p>
       <br />
 
       <div className="w-full p-4">
         <div className="flex flex-col w-full min-h-screen outline outline-1 outline-gray-300 rounded-md">
           <h1 className="text-black font-bold text-xl p-4">Problemática</h1>
           <p className="p-4 text-base text-justify">
-            {" "}
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet iure
-            debitis dolores voluptatum esse alias, maxime vero facere odio
-            temporibus neque earum at eaque nemo. Nemo exercitationem natus
-            eligendi adipisci. Repellendus, necessitatibus. Quas, reprehenderit!
-            Consequuntur, id eaque optio hic nisi cupiditate aliquid delectus
-            cum sed nesciunt dicta repellat deleniti eligendi sunt doloremque
-            quas animi facere atque eveniet quod beatae dolores. Ipsam enim sint
-            saepe fuga perferendis soluta nostrum veritatis unde error labore
-            officia nisi vel adipisci blanditiis delectus recusandae quia
-            cupiditate laudantium, quos quam voluptate dolorem repudiandae
-            exercitationem. Nostrum, incidunt! Expedita quidem fugit fugiat
-            iure, voluptatibus quasi architecto at quod ex maiores
-            necessitatibus et ea, accusantium, amet nemo adipisci aliquid
-            officia voluptatum vitae asperiores. Animi exercitationem optio
-            eaque suscipit nemo?{" "}
+            {axeData !== null ? axeData.problematica : ""}
           </p>
 
           <h2 className="text-black font-bold text-xl p-4">Estratégia</h2>
           <p className="p-4 text-base text-justify">
-            {" "}
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet iure
-            debitis dolores voluptatum esse alias, maxime vero facere odio
-            temporibus neque earum at eaque nemo. Nemo exercitationem natus
-            eligendi adipisci. Repellendus, necessitatibus. Quas, reprehenderit!
-            Consequuntur, id eaque optio hic nisi cupiditate aliquid delectus
-            cum sed nesciunt dicta repellat deleniti eligendi sunt doloremque
-            quas animi facere atque eveniet quod beatae dolores. Ipsam enim sint
-            saepe fuga perferendis soluta nostrum veritatis unde error labore
-            officia nisi vel adipisci blanditiis delectus recusandae quia
-            cupiditate laudantium, quos quam voluptate dolorem repudiandae
-            exercitationem. Nostrum, incidunt! Expedita quidem fugit fugiat
-            iure, voluptatibus quasi architecto at quod ex maiores
-            necessitatibus et ea, accusantium, amet nemo adipisci aliquid
-            officia voluptatum vitae asperiores. Animi exercitationem optio
-            eaque suscipit nemo?{" "}
+            {axeData !== null ? axeData.estrategia : ""}
           </p>
 
           <h3 className="text-black font-bold text-xl p-4">Resultados</h3>
-          <div className="w-full p-4">
-            <div className="flex flex-col w-full h-auto outline outline-1 outline-gray-300 rounded-md">
-              <h4 className="text-black font-bold text-lg p-4">Resultado</h4>
-              <p className="p-4 text-base text-justify">
-                {" "}
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet
-                iure debitis dolores voluptatum esse alias, maxime vero facere
-                odio temporibus neque earum at eaque nemo. Nemo exercitationem
-                natus eligendi adipisci. Repellendus, necessitatibus. Quas,
-                reprehenderit! Consequuntur, id eaque optio hic nisi cupiditate
-                aliquid delectus cum sed nesciunt dicta repellat deleniti
-                eligendi sunt doloremque quas animi facere atque eveniet quod
-                beatae dolores. Ipsam enim sint saepe fuga perferendis soluta
-                nostrum veritatis unde error labore officia nisi vel adipisci
-                blanditiis delectus recusandae quia cupiditate laudantium, quos
-                quam voluptate dolorem repudiandae exercitationem. Nostrum,
-                incidunt! Expedita quidem fugit fugiat iure, voluptatibus quasi
-                architecto at quod ex maiores necessitatibus et ea, accusantium,
-                amet nemo adipisci aliquid officia voluptatum vitae asperiores.
-                Animi exercitationem optio eaque suscipit nemo?{" "}
-              </p>
-
-              <h4 className="text-black font-bold text-lg p-4">Presupuesto</h4>
-              <p className="p-4 text-base text-justify">
-                {" "}
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet
-                iure debitis dolores voluptatum esse alias, maxime vero facere
-                odio temporibus neque earum at eaque nemo. Nemo exercitationem
-                natus eligendi adipisci. Repellendus, necessitatibus. Quas,
-                reprehenderit! Consequuntur, id eaque optio hic nisi cupiditate
-                aliquid delectus cum sed nesciunt dicta repellat deleniti
-                eligendi sunt doloremque quas animi facere atque eveniet quod
-                beatae dolores. Ipsam enim sint saepe fuga perferendis soluta
-                nostrum veritatis unde error labore officia nisi vel adipisci
-                blanditiis delectus recusandae quia cupiditate laudantium, quos
-                quam voluptate dolorem repudiandae exercitationem. Nostrum,
-                incidunt! Expedita quidem fugit fugiat iure, voluptatibus quasi
-                architecto at quod ex maiores necessitatibus et ea, accusantium,
-                amet nemo adipisci aliquid officia voluptatum vitae asperiores.
-                Animi exercitationem optio eaque suscipit nemo?{" "}
-              </p>
-            </div>
-          </div>
+          {resultsContent}
         </div>
+      </div>
+    </div>
+  );
+}
+
+function Results(id, presupuesto, resultado, indicadores) {
+  const menuContext = useContext(MenuContext);
+
+  return (
+    <div className="w-full p-4">
+      <div className="flex flex-col w-full h-auto outline outline-1 outline-gray-300 rounded-md">
+        <h4 className="text-black font-bold text-lg p-4">Resultado</h4>
+        <p className="p-4 text-base text-justify">{resultado}</p>
+
+        <h4 className="text-black font-bold text-lg p-4">Presupuesto</h4>
+        <p className="p-4 text-base text-justify">{presupuesto}</p>
+
+        <PanelMenu
+          model={[
+            {
+              label: "Indicadores",
+              icon: "pi pi-fw pi-file",
+              items: indicadores.map((e) => {
+                return {
+                  label: e.label,
+                  command: () => {
+                    menuContext.indicatorSelection({
+                      label: e.label,
+                      code: e.code,
+                    });
+                    menuContext.selectedOption("indicadores");
+                  },
+                };
+              }),
+            },
+          ]}
+          style={{ width: "100%" }}
+        />
       </div>
     </div>
   );

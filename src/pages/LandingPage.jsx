@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 /**
  * Context import
  */
-import MenuContext from "../components/context/MenuContext"
+import MenuContext from "../components/context/MenuContext";
 
 /**
  * Components imports
@@ -19,7 +19,7 @@ import Agil from "../resources/agil.svg";
 import BarChart from "../resources/chart-bar-solid.svg";
 
 export default function LandingPage() {
-  const menuContext = useContext(MenuContext)
+  const menuContext = useContext(MenuContext);
 
   function axeNav(id, name) {
     menuContext.selectedOption("ejes");
@@ -37,10 +37,14 @@ export default function LandingPage() {
       <div className="flex flex-row w-full">
         <div className="w-1/4 mt-10 p-4">
           <p className="text-black text-justify">
-            El sistema de monitoreo es una iniciativa del Servicio Social
-            Pasionista (SSPAS) para fiscalizar las políticas públicas. A través
-            de 94 indicadores divididos en cuatro ejes se vigilan los cambios en
-            diversos problemas.
+            Cambiar el texto de inicio por: El sistema de indicadores de
+            seguridad ciudadana es una iniciativa de la Plataforma por la
+            Seguridad Ciudadana (PSC), como un ejercicio de contraloría de
+            sociedad civil sobre cuatro ámbitos priorizados en seguridad
+            ciudadana. El sistema responde a los ejes de persecución del delito,
+            prevención e la violencia, atención a víctimas y rehabilitación e
+            inserción, a través de la medición de 40 indicadores que intentan
+            responder a las cuatro teorías de cambio generadas en cada eje.
           </p>
           <p className="text-black font-bold mt-4">
             Haz clic en cada eje para ver más detalles.
@@ -51,20 +55,25 @@ export default function LandingPage() {
             title={"Persecución del delito"}
             content={
               <p className="m-1">
-                Este eje está compuesto por 22 indicadores, de los cuales X son
-                de corto plazo, Y de mediano y Z de largo plazo. Aquí se
-                pretende observar si se está avanzando hacía un conjunto de
-                instituciones públicas articuladas para el desarrollo de una
-                política criminal. Algunos de los indicadores más sobresalientes
-                son:
-                <dl className="mt-4 mb-4 ml-2">
-                  <li>Judicalización de personas detenidas</li>
+                Este eje está compuesto por 11 indicadores, correspondientes a
+                cuatro resultados de corto, mediano y largo plazo. Los
+                indicadores se orientan a la medición de la articulación de las
+                instituciones de seguridad en torno a una política de
+                persecución penal, el fortalecimiento institucional, la lucha
+                contra la corrupción y las violaciones a derechos humanos y la
+                reducción de la criminalidad y la impunidad. Algunos de los
+                indicadores más sobresalientes son:
+                <br />
+                <ul className="mx-5 list-disc">
+                  <li>Detenciones realizadas con base a una investigación</li>
                   <li>
-                    Número de estrategias de operatividad policial basadas en
-                    evidencia
+                    Mejora de las condiciones laborales del personal policial
                   </li>
-                  <li>Corrupción policial</li>
-                </dl>
+                  <li>Percepción sobre corrupción policial</li>
+                  <li>
+                    Tasa de victimización por delincuencia y tipo de delito
+                  </li>
+                </ul>
                 <p
                   className="text-blue-400 cursor-pointer"
                   onClick={() => axeNav(1, "Persecución del delito")}
@@ -79,26 +88,28 @@ export default function LandingPage() {
             title={"Persecución de la violencia"}
             content={
               <p className="m-1">
-                Este eje tiene 33 indicadores, de los cuales X son de corto
-                plazo, Y de mediano y Z de largo plazo. Se verifica si existen
-                políticas de prevención en territorios de mayor afectación y si
-                hay acciones para fortalecer los derechos humanos. Algunos de
-                los indicadores más sobresalientes son:
-                <dl className="mt-4 mb-4 ml-2">
+                Este eje tiene 15 indicadores, correspondientes a cinco
+                resultados de corto, mediano y largo plazo. Sus indicadores
+                buscan brindar información sobre el desarrollo de políticas de
+                Estado en prevención de la violencia, la generación de
+                condiciones para el acceso y el ejercicio de derechos y la
+                transformación de relaciones de poder, el abordaje de conflictos
+                y la reconstrucción del tejido social. Algunos de los
+                indicadores más sobresalientes son:
+                <br />
+                <ul className="mx-5 list-disc">
                   <li>
-                    Número de actividades formativas en Centros Escalores para
-                    el abordaje alterno de conflictos
+                    Número de campañas sobre promoción de derechos humanos,
+                    rechazo a la violencia y promoción de relaciones de equidad
+                    en municipios priorizados
                   </li>
+                  <li>Percepción de seguridad en la comunidad de vida</li>
+                  <li>Tasa de desempleo juvenil en municipios priorizados</li>
                   <li>
-                    Número de actividades formativas sobre promoción de derechos
-                    humanos
+                    Número de víctimas por delitos en municipios priorizados
                   </li>
-                  <li>
-                    Número de espacios locales de diálogo y participación entre
-                    socidad civil y entidades estatales
-                  </li>
-                </dl>
-                <p 
+                </ul>
+                <p
                   className="text-blue-400 cursor-pointer"
                   onClick={() => axeNav(2, "Prevención de la violencia")}
                 >
@@ -112,25 +123,25 @@ export default function LandingPage() {
             title={"Atención a víctimas"}
             content={
               <p className="m-1">
-                El eje está compuesto por 15 indicadores, de los cuales X son de
-                corto plazo, Y de mediano y Z de largo plazo. Con los
-                indicadores se indaga si el Estado cuenta con estrategias y
-                políticas para atender a víctimas, así como el detalle de los
-                mecanismos descentralizados de atención y coordinacional entre
-                entidades públicas. Algunos de los indicadores más
-                sobresalientes son:
-                <dl className="mt-4 mb-4 ml-2">
+                El eje está compuesto por 15 indicadores, cuatro resultados de
+                corto, mediano y largo plazo. Estos indicadores tratan de
+                indagar sobre las estrategias y políticas para atender a
+                víctimas, así como el detalle de los mecanismos descentralizados
+                de atención y coordinación entre entidades públicas. Algunos de
+                los indicadores más sobresalientes son:
+                <br />
+                <ul className="mx-5 list-disc">
                   <li>Estrategia de atención a víctimas basada en evidencia</li>
                   <li>
                     Presupuesto asignado a instituciones del sistema nacional de
                     atención y protección de víctimas
                   </li>
                   <li>Cantidad de personal para atención directa a víctimas</li>
-                </dl>
-                <p 
+                </ul>
+                <p
                   className="text-blue-400 cursor-pointer"
                   onClick={() => axeNav(3, "Atención a víctimas")}
-                  >
+                >
                   Ver más
                 </p>
               </p>
@@ -138,26 +149,25 @@ export default function LandingPage() {
           />
 
           <PanelMenu
-            title={"Rehabilitación"}
+            title={"Rehabilitación y reinserción"}
             content={
               <p className="m-1">
-                Con 18 indicadores, de los cuales X son de corto plazo, Y de
-                mediano y Z de largo plazo, este eje aborda aspectos
-                relacionados a la administración efectiva de los centros de
-                detención. Algunos de los indicadores más sobresalientes son:
-                <dl className="mt-4 mb-4 ml-2">
-                  <li>
-                    Número de delitos ordenados desde centros de detención
-                  </li>
-                  <li>Tasa de hacinamiento de personas privadas de libertad</li>
-                  <li>
-                    Porcentaje de personas ex privadas de libertad reincidentes
-                  </li>
-                </dl>
-                <p 
+                El eje está compuesto de 9 indicadores, cinco resultados de
+                corto, mediano y largo plazo. Estos indicadores están orientados
+                en analizar las condiciones de detención, el cumplimiento de
+                estándares internacionales de derechos humanos, la
+                implementación de programas integrales de rehabilitación y de
+                inserción para personas en conflicto con la ley.
+                <br/>
+                <ul className="mx-5 list-disc">
+                  <li>Efectiva administración de los centros de detención</li>
+                  <li>Cumplimiento de estándares mínimos de derecho humanos</li>
+                  <li>Programas de reinserción de personas ex privadas de libertad</li>
+                </ul>
+                <p
                   className="text-blue-400 cursor-pointer"
                   onClick={() => axeNav(4, "Rehabilitación")}
-                  >
+                >
                   Ver más
                 </p>
               </p>

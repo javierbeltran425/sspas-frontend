@@ -21,7 +21,6 @@ export default function MapPage() {
         if (res.status === 200) setIndicators(res.data);
       })
       .catch((err) => {
-        console.log(err);
         alert("Ha sucedido un error");
       });
   }, []);
@@ -32,11 +31,7 @@ export default function MapPage() {
         if(selectedIndicator !== null){
             axios.get(process.env.REACT_APP_API_URL + 'medicion/lista/' + selectedIndicator.code)
             .then(res => {
-                console.log('Impresion de peticon desde grafica');
-                console.log(res);
-
                 setCoordinatesList(res.data)
-
             })
             .catch(err => {
                 console.error(err);
@@ -57,11 +52,9 @@ export default function MapPage() {
             selectedIndicator.code
         )
         .then((res) => {
-          console.log(res);
           if (res.status === 200) setIndicatorData(res.data);
         })
         .catch((err) => {
-          console.log(err);
           alert("Ha ocurrido un error");
         });
     }
@@ -89,6 +82,7 @@ export default function MapPage() {
                 <div className="card w-full">
                 <h5>Seleccione el indicador de su interés</h5>
                 <Dropdown
+                    name={ selectedIndicator !== null ? selectedIndicator.name : "" }
                     value={selectedIndicator}
                     options={indicators}
                     onChange={onCityChange}

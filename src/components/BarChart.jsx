@@ -1,41 +1,51 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from "primereact/chart";
 
+let years = [];
+let uniqueYearsArr = [];
+
 export default function BarChart(props) {
-  const { meditions } = props;
-  const [dates, setDates] = useState([]);
-  const [numbers, setNumbers] = useState([
-    {
-      label: "",
-      backgroundColor: "#42A5F5",
-      data: [],
-    },
-  ]);
+  const { meditions = [], name } = props;
+  const[ meditionsVal, setMeditionsVal ] = useState([])
 
-  console.log(meditions);
-
+  let measurementsPerYears = [];
   useEffect(() => {
-    if (meditions.length > 0) {
-      for (let i = 0; i < meditions.length; i++) {
-        setDates([...dates, meditions[i].ano]);
-        setNumbers([
-          {
-            ...numbers,
-            label: meditions[i].valores_factor,
-            backgroundColor: "#42A5F5",
-            data: meditions[i].valor_medicion,
-          },
-        ]);
-      }
+    if (uniqueYearsArr.length > 0) {
+      for (let i = 0; i < uniqueYearsArr.length; i++) {
+        for (let j = 0; j < meditions.length; j++) {
+          if (meditions[j].ano === uniqueYearsArr[i]) {
+            measurementsPerYears[i] =
+              measurementsPerYears[i] +
+              parseInt(meditions[j].valor_medicion);
+            }
+          }
+        }
+        setMeditionsVal(measurementsPerYears)
     }
   }, [meditions]);
 
-  console.log(dates);
-  console.log(numbers);
+  if (meditions.length > 0) {
+    meditions.forEach((element) => {
+      years.push(element.ano);
+    });
+
+    uniqueYearsArr = [...new Set(years)];
+
+    uniqueYearsArr.forEach((element) => {
+      measurementsPerYears.push(0);
+    });
+  }
+
 
   const basicData = {
-    labels: dates,
-    datasets: numbers,
+    labels: uniqueYearsArr,
+    datasets: [
+      {
+        label: name !== undefined ? name : "Sin valor",
+        backgroundColor: "#80b1f5",
+        data: meditionsVal,
+      }
+    ],
   };
 
   const getLightTheme = () => {

@@ -35,7 +35,6 @@ export default function DinamicTablePage() {
         if (res.status === 200) setIndicators(res.data);
       })
       .catch((err) => {
-        console.log(err);
         alert("Ha sucedido un error");
       });
   }, []);
@@ -52,17 +51,19 @@ export default function DinamicTablePage() {
               selectedIndicator1.code
           )
           .then((res) => {
-            console.log(res);
             if (res.status === 200) {
               setIndicatorData1(res.data);
               setDisaggregationFactors(res.data.factores_desagregacion);
+              setSelectedDisaggregationFactors([]);
+              setSelectedDisaggregationFactors2([]);
+              setSelectedDisaggregationValues([]);
+              setSelectedDisaggregationValues2([]);
             }
           })
           .catch((err) => {
-            console.log(err);
             alert("Ha ocurrido un error");
           });
-      }  
+      }
     } catch (error) {
       throw console.error(error);
     }
@@ -116,14 +117,14 @@ export default function DinamicTablePage() {
     try {
       if (selectedIndicator1 !== null) {
         axios
-          .get(
-            process.env.REACT_APP_API_URL + "grafica/" + selectedIndicator1.code
+        .get(
+          process.env.REACT_APP_API_URL + "grafica/" + selectedIndicator1.code
           )
           .then((res) => {
             setMeasurements(res.data);
           })
           .catch((err) => {
-            console.log(err);
+            alert('Ha ocurrido un error')
           });
       }
     } catch (error) {

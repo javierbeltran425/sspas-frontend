@@ -5,6 +5,7 @@ import MenuContext from "./MenuContext";
 const MenuState = (props) => {
     const [option, setOption] = useState('inicio')
     const [selectedAxe, setSelectedAxe] = useState({})
+    const [indicator, setIndicator] = useState(null)
 
     function selectedOption(optionIn) {
         setOption(optionIn);
@@ -14,13 +15,22 @@ const MenuState = (props) => {
       setSelectedAxe(axe)
     }
 
+    function indicatorSelection(indicator){
+      setIndicator({
+        label: indicator.label,
+        code: indicator.code
+      })
+    }
+
     return (
         <MenuContext.Provider
           value={{
             option,
             selectedAxe,
             selectedOption,
+            indicator,
             axeSelection,
+            indicatorSelection
           }}
         >
           {props.children}
