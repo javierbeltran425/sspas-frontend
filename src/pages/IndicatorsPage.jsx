@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 /**
@@ -12,7 +12,6 @@ import MenuContext from "../components/context/MenuContext";
 import { Dropdown } from "primereact/dropdown";
 import DataTable from "../components/DataTable";
 import "../components/cssFiles/DropdownDemo.css";
-import { useContext } from "react/cjs/react.development";
 
 export default function IndicatorsPage() {
   const { indicator } = useContext(MenuContext);
@@ -80,7 +79,7 @@ export default function IndicatorsPage() {
             conformación de teorías de cambio con objetivo, resultados e
             indicadores, estos últimos los que se encuentran conformando el
             sistema de monitoreo.
-            <br /> <br/>
+            <br /> <br />
             La definición de resultados e indicadores del sistema se hizo a
             partir de los insumos brindados sobre las diversas formas de
             abordaje y las características del problema priorizado. Esto llevó a
@@ -113,11 +112,6 @@ export default function IndicatorsPage() {
             : ""
         }
         data={indicatorData !== undefined ? indicatorData : undefined}
-        type={
-          indicatorData !== undefined
-            ? indicatorData.variable.nombre
-            : "numerico"
-        }
       />
     </div>
   );
