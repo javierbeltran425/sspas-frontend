@@ -46,7 +46,7 @@ export default function AxesPage() {
         <br />
         <ul className="list-disc ml-5">
           <li>Problemáticas</li>
-          <li>Estratégias implementadas par abordar las problemáticas</li>
+          <li>Estratégias implementadas para abordar las problemáticas</li>
           <li>Resultados obtenidos</li>
         </ul>
       </h2>

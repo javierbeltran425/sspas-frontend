@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+/**
+ * Components imports
+ */
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
+import { Dropdown } from "primereact/dropdown";
 
 export default function DataTable(props) {
-  const { name, data } = props;
+  const { name, data, factors } = props;
   const [meditions, setMeditions] = useState([]);
+  const [selectedFactor, setSelectedFactor] = useState(null);
+  const [indicators, setIndicators] = useState([]);
+  const [vals, setVals] = useState([])
+  
+  console.log('impresion de factors');
+  console.log(factors);
 
   useEffect(() => {
     if (data !== undefined) {
@@ -19,6 +29,27 @@ export default function DataTable(props) {
         });
     }
   }, [data]);
+
+  useEffect(() => {
+    if (selectedFactor !== null) {
+      axios.get(process.env.REACT_APP_API_URL + "factorDesagregacion/detalle/" + selectedFactor.pk)
+        .then((res) => {
+          console.log('impresion info factor');
+          console.log(res);
+          setVals(res.data.valores)
+        })
+        .catch((err) => {
+          alert('Ha ocurrido un error')
+        });
+    }
+  }, [selectedFactor]);
+
+  console.log('impresion de vals 1');
+  console.log(vals);
+
+  const onCityChange = (e) => {
+    setSelectedFactor(e.value);
+  };
 
   return (
     <>
@@ -81,7 +112,18 @@ export default function DataTable(props) {
           </tr>
         </div>
         <div className="w-1/2 my-1">
-          <BarChart meditions={meditions} name={name} />
+        <div className="card">
+            <h5>Seleccione el factor de su interés</h5>  
+            <Dropdown
+              value={selectedFactor}
+              options={factors}
+              onChange={onCityChange}
+              optionLabel="nombre"
+              placeholder="Seleccione un factor"
+              style={{ width: "100%" }}
+            />
+          </div>
+          <BarChart meditions={meditions} name={name} data={data} vals={vals} selectedFactor={selectedFactor}/>
         </div>
       </div>
     </>

@@ -18,6 +18,7 @@ export default function IndicatorsPage() {
   const [selectedIndicator, setSelectedIndicator] = useState(null);
   const [indicators, setIndicators] = useState([]);
   const [indicatorData, setIndicatorData] = useState();
+  const [factor, setFactor] = useState([]);
 
   useEffect(() => {
     if (indicator !== null) {
@@ -26,7 +27,10 @@ export default function IndicatorsPage() {
           process.env.REACT_APP_API_URL + "indicador/detalle/" + indicator.code
         )
         .then((res) => {
-          if (res.status === 200) setIndicatorData(res.data);
+          if (res.status === 200) {
+            setIndicatorData(res.data)
+            setFactor(res.data.factores_desagregacion)
+          }
         })
         .catch((err) => {
           alert("Ha ocurrido un error");
@@ -54,7 +58,12 @@ export default function IndicatorsPage() {
             selectedIndicator.code
         )
         .then((res) => {
-          if (res.status === 200) setIndicatorData(res.data);
+          console.log('impresion res selected indicator');
+          console.log(res);
+          if (res.status === 200) {
+            setIndicatorData(res.data)
+            setFactor(res.data.factores_desagregacion)
+          }
         })
         .catch((err) => {
           alert("Ha ocurrido un error");
@@ -73,7 +82,7 @@ export default function IndicatorsPage() {
           <h1 className="text-black font-bold text-2xl">
             Vista de indicadores
           </h1>
-          <p className="text-black">
+          <p className="text-black text-justify">
             La Plataforma por la Seguridad Ciudadana ha desarrollado un trabajo
             de discusión, análisis, formulación y validación que permitió con la
             conformación de teorías de cambio con objetivo, resultados e
@@ -112,6 +121,7 @@ export default function IndicatorsPage() {
             : ""
         }
         data={indicatorData !== undefined ? indicatorData : undefined}
+        factors={factor}
       />
     </div>
   );
