@@ -32,12 +32,12 @@ export default function LandingPage() {
   return (
     <div>
       <h1 className="text-3xl text-black font-bold text-center mt-10">
-        Sistema de visualización de datos de violencia
+        Sistema de Indicadores sobre seguridad Ciudadana
       </h1>
       <div className="flex flex-row w-full">
         <div className="w-2/4 mt-10 p-4">
           <p className="text-black text-justify">
-            Cambiar el texto de inicio por: El sistema de indicadores de
+            El sistema de indicadores de
             seguridad ciudadana es una iniciativa de la Plataforma por la
             Seguridad Ciudadana (PSC), como un ejercicio de contraloría de
             sociedad civil sobre cuatro ámbitos priorizados en seguridad
@@ -85,7 +85,7 @@ export default function LandingPage() {
           />
 
           <PanelMenu
-            title={"Persecución de la violencia"}
+            title={"Prevención de la violencia"}
             content={
               <p className="m-1">
                 Este eje tiene 15 indicadores, correspondientes a cinco
