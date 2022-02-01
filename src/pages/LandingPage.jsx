@@ -35,7 +35,7 @@ export default function LandingPage() {
         Sistema de visualización de datos de violencia
       </h1>
       <div className="flex flex-row w-full">
-        <div className="w-1/4 mt-10 p-4">
+        <div className="w-2/4 mt-10 p-4">
           <p className="text-black text-justify">
             Cambiar el texto de inicio por: El sistema de indicadores de
             seguridad ciudadana es una iniciativa de la Plataforma por la
@@ -50,7 +50,7 @@ export default function LandingPage() {
             Haz clic en cada eje para ver más detalles.
           </p>
         </div>
-        <div className="w-3/4 mt-10 p-4">
+        <div className="w-2/4 mt-10 p-4">
           <PanelMenu
             title={"Persecución del delito"}
             content={
