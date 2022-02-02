@@ -29,6 +29,8 @@ export default function DataTable(props) {
         });
     }
   }, [data]);
+  console.log('impresion data');
+  console.log(data);
 
   useEffect(() => {
     if (selectedFactor !== null) {
@@ -110,6 +112,15 @@ export default function DataTable(props) {
               {data !== undefined ? data.periodicidad : ""}
             </td>
           </tr>
+          <tr>
+            <td className="w-12 py-2 px-2">Archivo de ficha</td>
+            <td className="w-full py-2 px-2 text-blue-500">
+              <a href={data !== undefined ? process.env.REACT_APP_DOC_DOWNLOAD + data.archivo : ""} >
+                { data !== undefined ? "Descargar archivo" : "" }
+              </a>
+            </td>
+          </tr>
+
         </div>
         <div className="w-1/2 my-1">
         <div className="card">
