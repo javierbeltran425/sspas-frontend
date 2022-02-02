@@ -76,11 +76,15 @@ export default function DinamicTablePage() {
           indicatorData1.factores_desagregacion[i].nombre ===
           selectedDisaggregationFactors.nombre
         ) {
+          for (let i =0;values1.length > 0; i++) {
+            values1.pop();
+          }
           for (
             let j = 0;
             j < indicatorData1.factores_desagregacion[i].valores.length;
             j++
           ) {
+
             values1.push({
               name: indicatorData1.factores_desagregacion[i].valores[j],
             });
@@ -99,6 +103,9 @@ export default function DinamicTablePage() {
           indicatorData1.factores_desagregacion[i].nombre ===
           selectedDisaggregationFactors2.nombre
         ) {
+          for (let i =0;values2.length > 0; i++) {
+            values2.pop();
+          }
           for (
             let j = 0;
             j < indicatorData1.factores_desagregacion[i].valores.length;
