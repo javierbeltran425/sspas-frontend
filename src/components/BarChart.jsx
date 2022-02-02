@@ -9,22 +9,27 @@ export default function BarChart(props) {
   const { meditions = [], name, data, vals = [], selectedFactor } = props;
   const [meditionsVal, setMeditionsVal] = useState([]);
 
-  // console.log("Impresion de meditions");
-  // console.log(meditions);
-
-  // console.log("Impresion de data");
-  // console.log(data);
-
-  // console.log("impresion de vals");
-  // console.log(vals);
-
-  /**
-   * dataSet[i] = {
-            label: name !== undefined ? name : "Sin valor",
-            backgroundColor: "#80b1f5",
-            data: [measurementsPerYears[i]],
-          }
-   */
+  const colors = [
+    "aqua", 
+    "black", 
+    "blue", 
+    "fuchsia", 
+    "gray", 
+    "green", 
+    "lime", 
+    "maroon", 
+    "navy", 
+    "olive", 
+    "orange", 
+    "purple", 
+    "red", 
+    "silver", 
+    "teal", 
+    "yellow"
+  ]
+  const color_picker = () => {
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
 
   let measurementsPerYears = [];
   if (meditions.length > 0) {
@@ -85,7 +90,7 @@ export default function BarChart(props) {
 
       let datasets_alternativo= []
       for (let i = 0; i < meds_per_val.length; i++) {
-        let data_pivot = {label : vals[i], backgroundColor:"#000000" ,data : []}
+        let data_pivot = {label : vals[i], backgroundColor: color_picker() ,data : []}
         meds_per_val[i].forEach((m) => {
           data_pivot.data = [...data_pivot.data, m.valor_medicion]
         })
