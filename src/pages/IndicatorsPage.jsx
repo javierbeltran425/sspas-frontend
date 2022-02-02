@@ -58,8 +58,8 @@ export default function IndicatorsPage() {
             selectedIndicator.code
         )
         .then((res) => {
-          console.log('impresion res selected indicator');
-          console.log(res);
+          // console.log('impresion res selected indicator');
+          // console.log(res);
           if (res.status === 200) {
             setIndicatorData(res.data)
             setFactor(res.data.factores_desagregacion)

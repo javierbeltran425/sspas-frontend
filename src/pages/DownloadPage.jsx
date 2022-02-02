@@ -35,6 +35,7 @@ export default function DownloadPage() {
             process.env.REACT_APP_API_URL + "descarga/" + selectedIndicator.code
           )
           .then((res) => {
+            console.log(res);
             setDownloadArchives(res.data.documentos);
           })
           .catch((err) => {
@@ -65,7 +66,11 @@ export default function DownloadPage() {
   let pdfTargetContent = null 
   if(downloadArchives !== null){
     pdfTargetContent = downloadArchives.map(e => {
-      return <PdfTargetDownload key={Math.random()} id={e.id} name={e.nombre} description={e.descripcion} url={e.url} />
+      let string_documento = e.documento.split(".")
+      console.log(string_documento);
+      let extension = string_documento[string_documento.length - 1]
+      console.log(extension);
+      return <PdfTargetDownload key={Math.random()} id={e.id} name={e.nombre} description={e.descripcion} url={e.url} ext={extension} />
     })
   }
 

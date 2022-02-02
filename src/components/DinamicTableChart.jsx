@@ -16,6 +16,30 @@ export default function DinamicTableChart(props) {
   const [meditionsVal1, setMeditionsVal1] = useState([])
   const [meditionsVal2, setMeditionsVal2] = useState([])
 
+  const colors = [
+    "aqua", 
+    "black", 
+    "blue", 
+    "fuchsia", 
+    "gray", 
+    "green", 
+    "lime", 
+    "maroon", 
+    "navy", 
+    "olive", 
+    "orange", 
+    "purple", 
+    "red", 
+    "silver", 
+    "teal",
+    "yellow"
+  ]
+  const color_picker = () => {
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+  const color1 = color_picker();
+  const color2 = color_picker();
+
   useEffect(() => {
     try {
       measurementsPerYears1 = [];
@@ -91,12 +115,12 @@ export default function DinamicTableChart(props) {
     datasets: [
       {
         label: value1.name !== undefined ? value1.name : "Sin valor",
-        backgroundColor: "#80b1f5",
+        backgroundColor: color1,
         data: meditionsVal1,
       },
       {
         label: value2.name !== undefined ? value2.name : "Sin valor",
-        backgroundColor: "#fcacea",
+        backgroundColor: color2,
         data: meditionsVal2,
       },
     ],
