@@ -9,14 +9,14 @@ export default function BarChart(props) {
   const { meditions = [], name, data, vals = [], selectedFactor } = props;
   const [meditionsVal, setMeditionsVal] = useState([]);
 
-  console.log("Impresion de meditions");
-  console.log(meditions);
+  // console.log("Impresion de meditions");
+  // console.log(meditions);
 
-  console.log("Impresion de data");
-  console.log(data);
+  // console.log("Impresion de data");
+  // console.log(data);
 
-  console.log("impresion de vals");
-  console.log(vals);
+  // console.log("impresion de vals");
+  // console.log(vals);
 
   /**
    * dataSet[i] = {
@@ -62,8 +62,8 @@ export default function BarChart(props) {
         }
       }
      
-      console.log("impresion de dataset");
-      console.log(measurementsPerYears);
+      // console.log("impresion de dataset");
+      // console.log(measurementsPerYears);
       setMeditionsVal(measurementsPerYears);
     }
   }, [meditions]);
@@ -74,22 +74,31 @@ export default function BarChart(props) {
       vals.forEach((v) => {
         let meds = [];
         meditions.forEach((m) => {
-          const vals_m = m.valores_factor;
-          console.log("aqui:");
-          console.log(m.valores_factor);
-          if (m.valores_factor.includes(v)) meds = [...meds, m];
+          let vals_m = []
+          m.valores_factor.forEach((v_m) => {
+            vals_m = [...vals_m,v_m.valor]
+          })
+          if (vals_m.includes(v)) meds = [...meds, m];
         });
         meds_per_val = [...meds_per_val, meds];
       });
-      console.log("------------------------");
-      console.log(meds_per_val);
-      console.log("------------------------");
+
+      let datasets_alternativo= []
+      for (let i = 0; i < meds_per_val.length; i++) {
+        let data_pivot = {label : vals[i], backgroundColor:"#000000" ,data : []}
+        meds_per_val[i].forEach((m) => {
+          data_pivot.data = [...data_pivot.data, m.valor_medicion]
+        })
+        datasets_alternativo = [...datasets_alternativo, data_pivot]
+      }
+
+
 
       //-------------------------------------------------------------------------------
 
   const basicData = {
     labels: uniqueYearsArr,
-    datasets: meditionsVal,
+    datasets: datasets_alternativo,
   };
 
   const getLightTheme = () => {

@@ -15,8 +15,8 @@ export default function DataTable(props) {
   const [indicators, setIndicators] = useState([]);
   const [vals, setVals] = useState([])
   
-  console.log('impresion de factors');
-  console.log(factors);
+  // console.log('impresion de factors');
+  // console.log(factors);
 
   useEffect(() => {
     if (data !== undefined) {
@@ -34,8 +34,8 @@ export default function DataTable(props) {
     if (selectedFactor !== null) {
       axios.get(process.env.REACT_APP_API_URL + "factorDesagregacion/detalle/" + selectedFactor.pk)
         .then((res) => {
-          console.log('impresion info factor');
-          console.log(res);
+          // console.log('impresion info factor');
+          // console.log(res);
           setVals(res.data.valores)
         })
         .catch((err) => {
@@ -44,8 +44,8 @@ export default function DataTable(props) {
     }
   }, [selectedFactor]);
 
-  console.log('impresion de vals 1');
-  console.log(vals);
+  // console.log('impresion de vals 1');
+  // console.log(vals);
 
   const onCityChange = (e) => {
     setSelectedFactor(e.value);
