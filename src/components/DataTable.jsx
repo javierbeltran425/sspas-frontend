@@ -116,7 +116,7 @@ export default function DataTable(props) {
             <td className="w-12 py-2 px-2">Archivo de ficha</td>
             <td className="w-full py-2 px-2 text-blue-500">
               <a href={data !== undefined ? process.env.REACT_APP_DOC_DOWNLOAD + data.archivo : ""} >
-                { data !== undefined ? "Descargar archivo" : "" }
+                { data !== undefined ? "Descargar archivo" : "No hay archivo disponible" }
               </a>
             </td>
           </tr>
