@@ -13,6 +13,7 @@ export default function MapPage() {
   const [indicatorData, setIndicatorData] = useState();
   const [indicators, setIndicators] = useState([]);
   const [coordinatesList, setCoordinatesList] = useState([]);
+  const [factor, setFactor] = useState([]);
 
   useEffect(() => {
     axios
@@ -53,6 +54,24 @@ export default function MapPage() {
         )
         .then((res) => {
           if (res.status === 200) setIndicatorData(res.data);
+        })
+        .catch((err) => {
+          alert("Ha ocurrido un error");
+        });
+    }
+  }, [selectedIndicator]);
+
+  useEffect(() => {
+    if (selectedIndicator !== null) {
+      axios
+        .get(
+          process.env.REACT_APP_API_URL + "indicador/detalle/" + selectedIndicator.code
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            setIndicatorData(res.data)
+            setFactor(res.data.factores_desagregacion)
+          }
         })
         .catch((err) => {
           alert("Ha ocurrido un error");
@@ -110,6 +129,7 @@ export default function MapPage() {
               ? indicatorData.variable.nombre
               : "numerico"
           }
+          factors={factor}
         />
       </div>
     </div>
