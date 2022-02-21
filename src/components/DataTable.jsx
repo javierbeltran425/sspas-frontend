@@ -80,14 +80,17 @@ export default function DataTable(props) {
               {data !== undefined ? data.resultado.resultado : ""}
             </td>
           </tr>
-          <tr>
+          {/*<tr>
+
+            
             <td className="w-12 py-2 px-2">Alcance</td>
             <td className="w-full py-2 px-2">
               {data !== undefined ? data.alcance : ""}
             </td>
-          </tr>
+            
+          </tr>*/}
           <tr>
-            <td className="w-12 py-2 px-2">Fuente de verificación</td>
+            <td className="w-12 py-2 px-2">Descripción</td>
             <td className="w-full py-2 px-2">
               {data !== undefined ? data.fuente_verificacion : ""}
             </td>
@@ -107,11 +110,20 @@ export default function DataTable(props) {
             </td>
           </tr>
           <tr>
+            <td className="w-12 py-2 px-2">Instituciones</td>
+            <td className="w-full py-2 px-2">
+              {data !== undefined && data.instituciones.length > 0 ? data.instituciones.map((e)=>{
+                return <p>{e.nombre}</p>
+              }) : ""}
+            </td>
+          </tr>
+          {/*<tr>
             <td className="w-12 py-2 px-2">Periodicidad</td>
             <td className="w-full py-2 px-2">
               {data !== undefined ? data.periodicidad : ""}
             </td>
           </tr>
+          */}
           <tr>
             <td className="w-12 py-2 px-2">Archivo de ficha</td>
             <td className="w-full py-2 px-2 text-blue-500">
@@ -134,7 +146,7 @@ export default function DataTable(props) {
               style={{ width: "100%" }}
             />
           </div>
-          <BarChart meditions={meditions} name={name} data={data} vals={vals} selectedFactor={selectedFactor}/>
+          <BarChart meditions={meditions} name={name} data={data} vals={vals} selectedFactor={selectedFactor !== null ? selectedFactor : factors[0]  }/>
         </div>
       </div>
     </>

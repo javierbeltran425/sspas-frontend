@@ -16,7 +16,6 @@ import Footer from "./components/Footer";
  * pages imports
  */
 import BasePage from "./pages/BasePage";
-
 import MenuState from "./components/context/MenuState";
 
 function App() {

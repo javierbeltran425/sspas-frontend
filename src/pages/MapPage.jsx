@@ -7,6 +7,7 @@ import axios from "axios";
 import Map from "../components/Map";
 import DataTable from "../components/DataTable";
 import { Dropdown } from "primereact/dropdown";
+import { Carousel } from "primereact/carousel";
 
 export default function MapPage() {
   const [selectedIndicator, setSelectedIndicator] = useState(null);
@@ -85,7 +86,6 @@ export default function MapPage() {
 
   return (
     <div className="w-full min-h-screen">
-
         <div className="grid grid-cols-2 gap-4 w-full p-4">
             <div className="w-full">
                 <h1 className="text-black font-bold text-2xl">

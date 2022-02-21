@@ -33,20 +33,20 @@ export default function AxesPage() {
   let resultsContent = null;
   if (axeData !== null) {
     resultsContent = axeData.resultados.map((e) => {
-      return Results(e.id, e.presupuesto, e.resultado, e.indicadores);
+      return Results(e.id, e.presupuesto, e.resultado, e.indicadores, e.codigo);
     });
   }
 
   return (
     <div className="w-full min-h-screen">
-      <h1 className="text-black text-2xl font-bold p-4">VISTA DE EJES</h1>
+      <h1 className="text-black text-3xl font-bold p-4">Vista de Ejes</h1>
       <h2 className="p-4">
         En la presente vista, podrán encontrar información sobre cada uno de los
         ejes de informcaión, como:
         <br />
         <ul className="list-disc ml-5">
           <li>Problemáticas</li>
-          <li>Estratégias implementadas para abordar las problemáticas</li>
+          <li>Estrategias implementadas para abordar las problemáticas</li>
           <li>Resultados obtenidos</li>
         </ul>
       </h2>
@@ -63,7 +63,7 @@ export default function AxesPage() {
             {axeData !== null ? axeData.problematica : ""}
           </p>
 
-          <h2 className="text-black font-bold text-xl p-4">Estratégia</h2>
+          <h2 className="text-black font-bold text-xl p-4">Estrategia</h2>
           <p className="p-4 text-base text-justify">
             {axeData !== null ? axeData.estrategia : ""}
           </p>
@@ -76,17 +76,17 @@ export default function AxesPage() {
   );
 }
 
-function Results(id, presupuesto, resultado, indicadores) {
+function Results(id, presupuesto, resultado, indicadores, codigo) {
   const menuContext = useContext(MenuContext);
 
   return (
     <div className="w-full p-4">
       <div className="flex flex-col w-full h-auto outline outline-1 outline-gray-300 rounded-md">
-        <h4 className="text-black font-bold text-lg p-4">Resultado</h4>
+        <h4 className="text-black font-bold text-lg p-4">Resultado {codigo}</h4>
         <p className="p-4 text-base text-justify">{resultado}</p>
 
-        <h4 className="text-black font-bold text-lg p-4">Presupuesto</h4>
-        <p className="p-4 text-base text-justify">{presupuesto}</p>
+        {/*<h4 className="text-black font-bold text-lg p-4">Presupuesto</h4>
+        <p className="p-4 text-base text-justify">{presupuesto}</p>*/}
 
         <PanelMenu
           model={[

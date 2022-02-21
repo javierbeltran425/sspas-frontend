@@ -63,7 +63,7 @@ export default function PdfTargetDownload(props) {
         break;
       
       default:
-        return <Icon icon={faFile} className="text-4xl text-blue-500 mt-5" />
+        return  <Icon icon={faFile} className="text-4xl text-gray-500 mt-5" />
         break;
     }
   }

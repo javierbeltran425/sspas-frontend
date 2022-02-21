@@ -46,6 +46,13 @@ export default function LandingPage() {
             inserción, a través de la medición de 40 indicadores que intentan
             responder a las cuatro teorías de cambio generadas en cada eje.
           </p>
+          <p className="text-black text-justify">
+            La Plataforma por la Seguridad Ciudadana (PSC) es un espacio de
+            articulación de organizaciones de sociedad civil que trabajan temas
+            relacionados a la seguridad ciudadana en El Salvador que buscan monitorear
+            la efectividad de las políticas públicas y estrategias de seguridad para que
+            estas cumplan con estándares en materia de derechos humanos.
+          </p>
           <p className="text-black font-bold mt-4">
             Haz clic en cada eje para ver más detalles.
           </p>

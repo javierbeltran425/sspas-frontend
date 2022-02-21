@@ -6,6 +6,7 @@ import axios from "axios";
  */
 import { Dropdown } from "primereact/dropdown";
 import PdfTargetDownload from "../components/PdfTargetDownload";
+import CarouselComponent from "../components/CarouselComponent";
 
 export default function DownloadPage() {
   const [indicators, setIndicators] = useState();
@@ -76,6 +77,14 @@ export default function DownloadPage() {
 
   return (
     <div className="w-full min-h-screen">
+      <div className="flex flex-col items-center justify-center h-full">
+        <h1 className="text-black text-2xl font-bold">
+          Reportes Anuales
+        </h1>
+        <div className="w-full mt-4">
+          <CarouselComponent/>
+        </div>
+      </div>
       <div className="m-4">
         <h1 className="text-black text-2xl font-bold">Vista de descargas</h1>
         <h2 className="my-4">

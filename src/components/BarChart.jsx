@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from "primereact/chart";
+import { selectOptions } from "@testing-library/user-event/dist/select-options";
 
 let years = [];
 let uniqueYearsArr = [];
@@ -10,25 +11,28 @@ export default function BarChart(props) {
   const [meditionsVal, setMeditionsVal] = useState([]);
 
   const colors = [
-    "aqua", 
-    "black", 
-    "blue", 
-    "fuchsia", 
-    "gray", 
-    "green", 
-    "lime", 
-    "maroon", 
-    "navy", 
-    "olive", 
-    "orange", 
-    "purple", 
-    "red", 
-    "silver", 
-    "teal", 
-    "yellow"
+    "aqua", "black",  "orangered",
+    "blue", "fuchsia",  "seagreen",
+    "gray", "green",  "slateblue",
+    "lime", "maroon",  "springgreen",
+    "navy", "olive",  "tomato",
+    "orange", "purple",  "sienna",
+    "red", "silver",  "salmon",
+    "teal", "yellow", "papayawhip",
+    "aquamarine", "cadetblue", "olivedrab",
+    "chartreuse", "coral", "limegreen",
+    "crimson", "darkblue", "lawngreen",
+    "darkgreen", "darkolivegreen", "darkslateblue",
+    "deeppink", "firebrick", "brown",
+    "gold", "greenyellow", "blanchedalmond",
+    "indianred", "indigo", "darkred",
+    "khaki", "lightseagreen", "goldenrod",
   ]
+  
   const color_picker = () => {
-    return colors[Math.floor(Math.random() * colors.length)];
+    setTimeout(()=>{},20)
+    let color = colors[Math.floor(Math.random() * colors.length)];
+    return color;
   }
 
   let measurementsPerYears = [];
@@ -43,6 +47,7 @@ export default function BarChart(props) {
       measurementsPerYears.push({});
     });
   }
+
 
   useEffect(() => {
     if (uniqueYearsArr.length > 0) {
