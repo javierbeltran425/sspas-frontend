@@ -19,6 +19,8 @@ export default function IndicatorsPage() {
   const [indicators, setIndicators] = useState([]);
   const [indicatorData, setIndicatorData] = useState();
   const [factor, setFactor] = useState([]);
+  const [relationIndicatorsList, setRelationIndicatorsList] = useState([])
+  const [selectedRelationIndicator, setSelectedRelationIndicator] = useState(null);
 
   useEffect(() => {
     if (indicator !== null) {
@@ -28,8 +30,8 @@ export default function IndicatorsPage() {
         )
         .then((res) => {
           if (res.status === 200) {
-            setIndicatorData(res.data)
-            setFactor(res.data.factores_desagregacion)
+            setIndicatorData(res.data);
+            setFactor(res.data.factores_desagregacion);
           }
         })
         .catch((err) => {
@@ -61,8 +63,8 @@ export default function IndicatorsPage() {
           // console.log('impresion res selected indicator');
           // console.log(res);
           if (res.status === 200) {
-            setIndicatorData(res.data)
-            setFactor(res.data.factores_desagregacion)
+            setIndicatorData(res.data);
+            setFactor(res.data.factores_desagregacion);
           }
         })
         .catch((err) => {
@@ -71,8 +73,38 @@ export default function IndicatorsPage() {
     }
   }, [selectedIndicator]);
 
+  useEffect(() => {
+    relationalIndicators();
+  }, [selectedIndicator]);
+
+  console.log("selected indicator");
+  console.log(selectedIndicator);
+
+  const relationalIndicators = () => {
+    if (selectedIndicator !== null) {
+      axios
+        .get(
+          process.env.REACT_APP_API_URL +
+            "indicadores_relacionados/" +
+            selectedIndicator.code
+        )
+        .then((res) => {
+          console.log("Impresion de relationalIndicators");
+          console.log(res);
+          setRelationIndicatorsList(res.data)
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+
   const onCityChange = (e) => {
     setSelectedIndicator(e.value);
+  };
+
+  const onRelationalChange = (e) => {
+    setSelectedRelationIndicator(e.value);
   };
 
   return (
@@ -123,6 +155,22 @@ export default function IndicatorsPage() {
         data={indicatorData !== undefined ? indicatorData : undefined}
         factors={factor}
       />
+
+      <div className="flex flex-row justify-center w-full p-4 overflow-hidden my-6">
+        <div className="card w-full">
+          <h5 className="text-black font-bold text-lg">
+            Indicadores relacionados
+          </h5>
+          <Dropdown
+            value={selectedRelationIndicator}
+            options={relationIndicatorsList}
+            onChange={onRelationalChange}
+            optionLabel="name"
+            placeholder="Seleccione un indicador"
+            style={{ width: "100%" }}
+          />
+        </div>
+      </div>
     </div>
   );
 }

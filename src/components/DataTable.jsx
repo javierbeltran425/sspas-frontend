@@ -63,6 +63,12 @@ export default function DataTable(props) {
             <th>Valor</th>
           </tr>
           <tr>
+            <td className="w-12 py-2 px-2">Subtítulo</td>
+            <td className="w-full py-2 px-2">
+              {data !== undefined ? data.subtitulo : ""}
+            </td>
+          </tr>
+          <tr>
             <td className="w-12 py-2 px-2">Eje temático</td>
             <td className="w-full py-2 px-2">
               {data !== undefined ? data.resultado.eje.nombre : ""}
