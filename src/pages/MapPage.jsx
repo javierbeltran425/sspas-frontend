@@ -108,6 +108,7 @@ export default function MapPage() {
                     optionLabel="name"
                     placeholder="Seleccione un indicador"
                     style={{ width: "95%" }}
+                    filter
                 />
                 </div>
             </div>
