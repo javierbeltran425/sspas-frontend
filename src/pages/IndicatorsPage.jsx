@@ -183,6 +183,7 @@ export default function IndicatorsPage() {
           </h5>
           <Dropdown
             value={selectedRelationIndicator}
+            
             options={relationIndicatorsList}
             onChange={onRelationalChange}
             optionLabel="name"
