@@ -74,6 +74,12 @@ export default function IndicatorsPage() {
   }, [selectedIndicator]);
 
   useEffect(() => {
+    if(selectedRelationIndicator !== null){
+      setSelectedIndicator(selectedRelationIndicator)
+    }
+  }, [selectedRelationIndicator])
+  
+  useEffect(() => {
     relationalIndicators();
   }, [selectedIndicator]);
 
@@ -91,13 +97,26 @@ export default function IndicatorsPage() {
         .then((res) => {
           console.log("Impresion de relationalIndicators");
           console.log(res);
-          setRelationIndicatorsList(res.data)
+          
+          filter_relational_indicators(res.data)
         })
         .catch((err) => {
           console.error(err);
         });
     }
   };
+
+  const filter_relational_indicators = (data) => {
+    let aux = []
+
+    for(let i = 0; i < data.length; i++){
+      if(i > 0){
+        aux.push(data[i])
+      }
+    }
+
+    setRelationIndicatorsList(aux)
+  }
 
   const onCityChange = (e) => {
     setSelectedIndicator(e.value);
@@ -139,6 +158,7 @@ export default function IndicatorsPage() {
               optionLabel="name"
               placeholder="Seleccione un indicador"
               style={{ width: "95%" }}
+              filter
             />
           </div>
         </div>
@@ -159,7 +179,7 @@ export default function IndicatorsPage() {
       <div className="flex flex-row justify-center w-full p-4 overflow-hidden my-6">
         <div className="card w-full">
           <h5 className="text-black font-bold text-lg">
-            Indicadores relacionados
+            Subindicadores relacionados
           </h5>
           <Dropdown
             value={selectedRelationIndicator}
@@ -168,6 +188,7 @@ export default function IndicatorsPage() {
             optionLabel="name"
             placeholder="Seleccione un indicador"
             style={{ width: "100%" }}
+            filter
           />
         </div>
       </div>
