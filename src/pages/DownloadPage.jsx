@@ -100,7 +100,6 @@ export default function DownloadPage() {
           onChange={onIndicatorChange}
           optionLabel="name"
           filter
-          showClear
           filterBy="name"
           placeholder="Seleccione un indicador"
           valueTemplate={selectedIndicatorTemplate}
