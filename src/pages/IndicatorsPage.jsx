@@ -83,8 +83,8 @@ export default function IndicatorsPage() {
     relationalIndicators();
   }, [selectedIndicator]);
 
-  console.log("selected indicator");
-  console.log(selectedIndicator);
+  //console.log("selected indicator");
+  //console.log(selectedIndicator);
 
   const relationalIndicators = () => {
     if (selectedIndicator !== null) {
@@ -95,8 +95,8 @@ export default function IndicatorsPage() {
             selectedIndicator.code
         )
         .then((res) => {
-          console.log("Impresion de relationalIndicators");
-          console.log(res);
+          //console.log("Impresion de relationalIndicators");
+          //console.log(res);
           
           filter_relational_indicators(res.data)
         })
@@ -163,19 +163,6 @@ export default function IndicatorsPage() {
           </div>
         </div>
       </div>
-
-      <DataTable
-        name={
-          selectedIndicator !== null
-            ? selectedIndicator.name
-            : indicator !== null
-            ? indicator.label
-            : ""
-        }
-        data={indicatorData !== undefined ? indicatorData : undefined}
-        factors={factor}
-      />
-
       <div className="flex flex-row justify-center w-full p-4 overflow-hidden my-6">
         <div className="card w-full">
           <h5 className="text-black font-bold text-lg">
@@ -193,6 +180,19 @@ export default function IndicatorsPage() {
           />
         </div>
       </div>
+      <DataTable
+        name={
+          selectedIndicator !== null
+            ? selectedIndicator.name
+            : indicator !== null
+            ? indicator.label
+            : ""
+        }
+        data={indicatorData !== undefined ? indicatorData : undefined}
+        factors={factor}
+      />
+
+      
     </div>
   );
 }

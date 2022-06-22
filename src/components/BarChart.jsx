@@ -72,7 +72,7 @@ export default function BarChart(props) {
         }
       }
      
-      // console.log("impresion de dataset");
+      //  ("impresion de dataset");
       // console.log(measurementsPerYears);
       setMeditionsVal(measurementsPerYears);
     }
@@ -105,7 +105,7 @@ export default function BarChart(props) {
 
 
       //-------------------------------------------------------------------------------
-
+  //console.log(...datasets_alternativo);
   const basicData = {
     labels: uniqueYearsArr,
     datasets: datasets_alternativo,
