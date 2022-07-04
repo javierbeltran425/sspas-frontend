@@ -11,12 +11,14 @@ import "primeicons/primeicons.css";
  */
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
 /**
  * pages imports
  */
 import BasePage from "./pages/BasePage";
 import MenuState from "./components/context/MenuState";
+//initialize google analytics
+import ReactGA from "react-ga";
+ReactGA.initialize("G-9LSGT8TF74");
 
 function App() {
   

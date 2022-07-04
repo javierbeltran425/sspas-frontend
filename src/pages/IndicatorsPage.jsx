@@ -174,7 +174,7 @@ export default function IndicatorsPage() {
             options={relationIndicatorsList}
             onChange={onRelationalChange}
             optionLabel="name"
-            placeholder="Seleccione un indicador"
+            placeholder="Seleccione un subindicador"
             style={{ width: "100%" }}
             filter
           />
