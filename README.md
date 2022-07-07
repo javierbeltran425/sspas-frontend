@@ -109,10 +109,3 @@ SonarQube es una plataforma de código abierto para la inspección continua de l
 Luego de reuniones con los equipos de trabajo involucrados en este proyecto se tomo la decisión de Licenciar el proyecto bajo la Licencia GPL v3.
 
 El proyecto GNU, fundado en 1983 por Richard M. Stallman tiene por objetivo construir un entorno informático completamente libre. El "arma" usada para obtener esa conquista no es un programa informático, sino una pieza de texto jurídico, una licencia de software que se ha convertido en algo así como la constitución básica del movimiento denominado “copyleft“, porque el caballo de batalla en todo esto son los por todos conocidos copyright (derechos de autor). Todo software está bajo copyright desde el momento de su publicación. El software libre no es la excepción. El software es libre porque quien tiene el copyright decide publicarlo bajo una licencia que lo hace libre. Se trata pues de una cuestión jurídica, no de programación. Esa es la razón de ser de la Licencia Pública General de GNU, una licencia pensada para otorgar las libertades de usar los programas con cualquier propósito, estudiar cómo funcionan, adaptarlos a las propias necesidades, copiarlos sin limite alguno, mejorarlos y distribuir las mejoras. La única condición esencial de la licencia, es que al redistribuir el programa o sus obras derivadas, siga siendo libre. 
-
-
-<a href = "https://github.com/Tanu-N-Prabhu/Python/graphs/contributors">
-  <img src = "https://contrib.rocks/image?repo = GitHub_username/repository_name"/>
-</a>
-
-Made with [contributors-img](https://contrib.rocks).
